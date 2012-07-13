@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 git_bundles = %w{
   https://github.com/Shougo/neocomplcache.git
+  https://github.com/vim-scripts/rubycomplete.vim
   https://github.com/ecomba/vim-ruby-refactoring.git
   https://github.com/jgdavey/vim-blockle.git
   https://github.com/kchmck/vim-coffee-script.git
