@@ -43,8 +43,9 @@ set cursorline
 highlight Pmenu ctermbg=238 gui=bold
 
 map tt :!rspec spec<CR>
-map tc :!cucumber features -f progress<CR>
+map tc :!cucumber features<CR>
 nmap <Leader>r *viw"hy:%s/<C-r>h//gc<left><left><left>
+nmap <Leader>c viw"hy:Ack "class <C-r>h( )?"<CR>:bd<CR>
 
 
 nnoremap <C-Down> :m+<CR>==
@@ -57,29 +58,4 @@ vnoremap <C-Up> :m-2<CR>gv=gv
 call pathogen#infect()
 call pathogen#helptags()
 
-" -- neocomplcache
-let g:acp_enableAtStartup = 0
-"Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-"Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-"Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-"Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-"Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 2
-
-inoremap <expr><TAB>  pumvisible() ? "<C-n>" : "<TAB>"
-
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-"let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::' 
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
