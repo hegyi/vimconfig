@@ -42,10 +42,14 @@ set cursorline
 
 highlight Pmenu ctermbg=238 gui=bold
 
+set wildignore+=*/doc/*,*/tmp/*,*.so,*.swp,*.zip
+
 map tt :!rspec spec<CR>
 map tc :!cucumber features<CR>
 nmap <Leader>r *viw"hy:%s/<C-r>h//gc<left><left><left>
 nmap <Leader>c viw"hy:Ack "class <C-r>h( )?"<CR>:bd<CR>
+nmap s ys
+nmap ; :
 
 
 nnoremap <C-Down> :m+<CR>==
