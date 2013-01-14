@@ -4,6 +4,7 @@ git_bundles = %w{
   https://github.com/vim-scripts/rubycomplete.vim
   https://github.com/ervandew/supertab.git
   https://github.com/ecomba/vim-ruby-refactoring.git
+  https://github.com/tsaleh/vim-matchit
   https://github.com/jgdavey/vim-blockle.git
   https://github.com/kchmck/vim-coffee-script.git
   https://github.com/kien/ctrlp.vim.git
@@ -20,6 +21,9 @@ git_bundles = %w{
   https://github.com/vim-ruby/vim-ruby.git
   https://github.com/tpope/vim-rails.git
   https://github.com/vim-scripts/jQuery.git
+  https://github.com/tsaleh/vim-align
+  https://github.com/ton/vim-bufsurf
+  https://github.com/vim-scripts/Rename
 }
 
 require 'fileutils'
