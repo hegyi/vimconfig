@@ -1,4 +1,6 @@
 set nocompatible
+set t_ut=
+set cursorline 
 colorscheme vibrantink
 set undolevels=1000
 set history=1000 
@@ -20,6 +22,7 @@ set smartcase
 set hlsearch
 set incsearch
 set wrapscan
+set t_Co=256
 filetype on
 filetype plugin on
 filetype indent on
@@ -37,9 +40,8 @@ set fillchars=""
 set modifiable
 set write
 set gfn=Monospace\ 12
-set cursorline
-
-let g:ctrlp_extensions = ['tag']
+let g:ctrlp_working_path_mode = 0
+let loaded_matchparen = 1
 
 set cpoptions=ces$
 
@@ -55,7 +57,6 @@ vnoremap a :Align
 map <F5> :BufSurfBack<CR>
 map <F6> :BufSurfForward<CR>
 nmap <F8> :Rename 
-nmap <C-d> :CtrlPTag<CR>
 
 nnoremap <C-Down> :m+<CR>==
 nnoremap <C-Up> :m-2<CR>==
@@ -79,10 +80,11 @@ function! RunCurrentTest()
 
     if match(expand('%'), '\.feature$') != -1
       call SetTestRunner("!cucumber")
-      exec g:bjo_test_runner g:bjo_test_file
+      exec g:bjo_test_runner . " " . g:bjo_test_filei . " > test_commands"
     elseif match(expand('%'), '_spec\.rb$') != -1
-      call SetTestRunner("!rspec")
-      exec g:bjo_test_runner g:bjo_test_file
+      call SetTestRunner("!e ")
+      exec ':silent !echo "e ' . g:bjo_test_file . '" > test_commands'
+      :redraw!
     else
       call SetTestRunner("!ruby -Itest")
       exec g:bjo_test_runner g:bjo_test_file
@@ -102,11 +104,13 @@ function! RunCurrentLineInTest()
     call SetTestFileWithLine()
   end
 
-  exec "!rspec" g:bjo_test_file . ":" . g:bjo_test_file_line
+  exec ':silent !echo "e ' . g:bjo_test_file . ':' . g:bjo_test_file_line . '" > test_commands'
+  :redraw!
 endfunction
 
 function! SetTestFile()
   let g:bjo_test_file=@%
+  let g:bjo_test_file=g:bjo_test_file
 endfunction
 
 function! SetTestFileWithLine()
@@ -124,7 +128,3 @@ function! CorrectTestRunner()
   endif
 endfunction
 
-set foldmethod=syntax
-set foldlevelstart=99
-nnoremap <Space> za
-vnoremap <Space> za

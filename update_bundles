@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 git_bundles = %w{
+  https://github.com/tpope/vim-dispatch
   https://github.com/mileszs/ack.vim
   https://github.com/vim-scripts/rubycomplete.vim
   https://github.com/ervandew/supertab.git
