@@ -1,3 +1,4 @@
+set relativenumber
 set nocompatible
 set t_ut=
 set cursorline 
@@ -64,6 +65,8 @@ inoremap <C-Down> <Esc>:m+<CR>==gi
 inoremap <C-Up> <Esc>:m-2<CR>==gi
 vnoremap <C-Down> :m'>+<CR>gv=gv
 vnoremap <C-Up> :m-2<CR>gv=gv
+
+vnoremap y ygv"+y
 
 call pathogen#infect()
 call pathogen#helptags()
