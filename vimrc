@@ -1,4 +1,3 @@
-set relativenumber
 set nocompatible
 set t_ut=
 set cursorline 
@@ -29,7 +28,6 @@ filetype plugin on
 filetype indent on
 set hidden
 set cpoptions=ces$
-set number
 syntax on
 set showmode
 set expandtab
@@ -40,6 +38,7 @@ set wildmenu
 set fillchars=""
 set modifiable
 set write
+set relativenumber
 set gfn=Monospace\ 12
 let g:ctrlp_working_path_mode = 0
 let loaded_matchparen = 1
@@ -59,6 +58,8 @@ map <F5> :BufSurfBack<CR>
 map <F6> :BufSurfForward<CR>
 nmap <F8> :Rename 
 
+vnoremap f "fy:Ack <C-r>f<CR>
+
 nnoremap <C-Down> :m+<CR>==
 nnoremap <C-Up> :m-2<CR>==
 inoremap <C-Down> <Esc>:m+<CR>==gi
@@ -71,7 +72,7 @@ vnoremap y ygv"+y
 call pathogen#infect()
 call pathogen#helptags()
 
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+let g:ackprg="ack-grep -H -a --nocolor --nogroup --column"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Test-running stuff
@@ -131,3 +132,4 @@ function! CorrectTestRunner()
   endif
 endfunction
 
+let g:solarized_termcolors=256
