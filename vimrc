@@ -43,6 +43,7 @@ set gfn=Monospace\ 12
 let g:ctrlp_working_path_mode = 0
 let loaded_matchparen = 1
 
+set timeout timeoutlen=500 ttimeoutlen=500
 set cpoptions=ces$
 
 highlight Pmenu ctermbg=238 gui=bold
@@ -53,7 +54,14 @@ nmap <Leader>r *viw"hy:%s/<C-r>h//gc<left><left><left>
 nmap s ys
 map <Leader>t :call RunCurrentTest()<CR>
 map <Leader>ct :call RunCurrentLineInTest()<CR>
-vnoremap a :Align
+
+map <Leader>w :Rview<CR>
+map <Leader>c :Rcontroller<CR>
+map <Leader>m :Rmodel<CR>
+map <Leader>s :A<CR>
+map <Leader>h :Rhelper<CR>
+
+" vnoremap a :Align
 map <F5> :BufSurfBack<CR>
 map <F6> :BufSurfForward<CR>
 nmap <F8> :Rename 
@@ -133,3 +141,5 @@ function! CorrectTestRunner()
 endfunction
 
 let g:solarized_termcolors=256
+
+map <leader>l :Bufstop<CR>
