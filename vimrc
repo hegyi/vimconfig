@@ -50,7 +50,6 @@ highlight Pmenu ctermbg=238 gui=bold
 
 set wildignore+=*/doc/*,*/tmp/*,*.so,*.swp,*.zip,*/public/*
 
-nmap <Leader>r *viw"hy:%s/<C-r>h//gc<left><left><left>
 nmap s ys
 map <Leader>t :call RunCurrentTest()<CR>
 map <Leader>ct :call RunCurrentLineInTest()<CR>
@@ -143,3 +142,30 @@ endfunction
 let g:solarized_termcolors=256
 
 map <leader>l :Bufstop<CR>
+
+
+
+function! RenameFile()
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
+endfunction
+map <leader>r :call RenameFile()<cr>
+
+
+function! ExtractVariable()
+  let name = input("Variable name: ")
+  if name == ''
+    return
+  endif
+  normal! gv
+  exec "normal c" . name
+  exec "normal! O" . name . " = "
+  normal! $p
+endfunction
+vnoremap <leader>e :call ExtractVariable()<cr>
+
