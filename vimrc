@@ -40,19 +40,21 @@ set modifiable
 set write
 set relativenumber
 set gfn=Monospace\ 12
-let g:ctrlp_working_path_mode = 0
-let loaded_matchparen = 1
+" let g:ctrlp_working_path_mode = 0
+let g:ctrlp_by_filename = 1
+" let loaded_matchparen = 1
 
 set timeout timeoutlen=500 ttimeoutlen=500
 set cpoptions=ces$
 
 highlight Pmenu ctermbg=238 gui=bold
 
-set wildignore+=*/doc/*,*/tmp/*,*.so,*.swp,*.zip,*/public/*
+set wildignore+=*/doc/*,*/tmp/*,*.so,*.swp,*.zip,*/public/*,*.gif,*.png,*.jpg
 
 nmap s ys
 map <Leader>t :call RunCurrentTest()<CR>
 map <Leader>ct :call RunCurrentLineInTest()<CR>
+map <c-d> :CtrlPTag<CR>
 
 map <Leader>w :Rview<CR>
 map <Leader>c :Rcontroller<CR>
