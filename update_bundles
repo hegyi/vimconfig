@@ -5,6 +5,7 @@ git_bundles = %w{
   https://github.com/MarcWeber/vim-addon-mw-utils.git
   https://github.com/garbas/vim-snipmate
   https://github.com/matthewsimo/angular-vim-snippets
+  https://github.com/tpope/vim-rake
   https://github.com/altercation/vim-colors-solarized.git
   https://github.com/tpope/vim-dispatch
   https://github.com/mileszs/ack.vim
