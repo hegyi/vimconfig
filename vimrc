@@ -41,7 +41,7 @@ set write
 set relativenumber
 set gfn=Monospace\ 12
 " let g:ctrlp_working_path_mode = 0
-let g:ctrlp_by_filename = 1
+" let g:ctrlp_by_filename = 1
 " let loaded_matchparen = 1
 
 set timeout timeoutlen=500 ttimeoutlen=500
