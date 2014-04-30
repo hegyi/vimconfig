@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 git_bundles = %w{
+  https://github.com/jgdavey/tslime.vim
+  https://github.com/thoughtbot/vim-rspec
   https://github.com/honza/vim-snippets
   https://github.com/tomtom/tlib_vim.git
   https://github.com/MarcWeber/vim-addon-mw-utils.git

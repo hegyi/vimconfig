@@ -51,9 +51,13 @@ highlight Pmenu ctermbg=238 gui=bold
 
 set wildignore+=*/doc/*,*/tmp/*,*.so,*.swp,*.zip,*/public/*,*.gif,*.png,*.jpg
 
+map k gk
+map j gj
+map <Up> gk
+map <Down> gj
 nmap s ys
-map <Leader>t :call RunCurrentTest()<CR>
-map <Leader>ct :call RunCurrentLineInTest()<CR>
+" map <Leader>t :call RunCurrentTest()<CR>
+" map <Leader>ct :call RunCurrentLineInTest()<CR>
 map <c-d> :CtrlPTag<CR>
 
 map <Leader>w :Rview<CR>
@@ -76,70 +80,14 @@ inoremap <C-Up> <Esc>:m-2<CR>==gi
 vnoremap <C-Down> :m'>+<CR>gv=gv
 vnoremap <C-Up> :m-2<CR>gv=gv
 
-vnoremap y ygv"+y
+let g:rspec_command = "!rspec {spec} > rspec_output 2>&1"
+map <Leader>t :call RunAllSpecs()<CR>:redraw!<CR>
+map <Leader>ct :call RunCurrentSpecFile()<CR>:redraw!<CR>
 
 call pathogen#infect()
 call pathogen#helptags()
 
 let g:ackprg="ack-grep -H -a --nocolor --nogroup --column"
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Test-running stuff
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! RunCurrentTest()
-  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
-  if in_test_file
-    call SetTestFile()
-
-    if match(expand('%'), '\.feature$') != -1
-      call SetTestRunner("!cucumber")
-      exec g:bjo_test_runner . " " . g:bjo_test_filei . " > test_commands"
-    elseif match(expand('%'), '_spec\.rb$') != -1
-      call SetTestRunner("!e ")
-      exec ':silent !echo "e ' . g:bjo_test_file . '" > test_commands'
-      :redraw!
-    else
-      call SetTestRunner("!ruby -Itest")
-      exec g:bjo_test_runner g:bjo_test_file
-    endif
-  else
-    exec g:bjo_test_runner g:bjo_test_file
-  endif
-endfunction
-
-function! SetTestRunner(runner)
-  let g:bjo_test_runner=a:runner
-endfunction
-
-function! RunCurrentLineInTest()
-  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
-  if in_test_file
-    call SetTestFileWithLine()
-  end
-
-  exec ':silent !echo "e ' . g:bjo_test_file . ':' . g:bjo_test_file_line . '" > test_commands'
-  :redraw!
-endfunction
-
-function! SetTestFile()
-  let g:bjo_test_file=@%
-  let g:bjo_test_file=g:bjo_test_file
-endfunction
-
-function! SetTestFileWithLine()
-  let g:bjo_test_file=@%
-  let g:bjo_test_file_line=line(".")
-endfunction
-
-function! CorrectTestRunner()
-  if match(expand('%'), '\.feature$') != -1
-    return "cucumber"
-  elseif match(expand('%'), '_spec\.rb$') != -1
-    return "rspec"
-  else
-    return "ruby"
-  endif
-endfunction
 
 let g:solarized_termcolors=256
 
