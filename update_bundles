@@ -1,11 +1,12 @@
 #!/usr/bin/env ruby
 git_bundles = %w{
+  https://github.com/bling/vim-airline
+  https://github.com/terryma/vim-multiple-cursors
+  https://github.com/bling/vim-bufferline
   https://github.com/jgdavey/tslime.vim
   https://github.com/thoughtbot/vim-rspec
-  https://github.com/honza/vim-snippets
   https://github.com/tomtom/tlib_vim.git
   https://github.com/MarcWeber/vim-addon-mw-utils.git
-  https://github.com/garbas/vim-snipmate
   https://github.com/matthewsimo/angular-vim-snippets
   https://github.com/tpope/vim-rake
   https://github.com/altercation/vim-colors-solarized.git
@@ -14,7 +15,6 @@ git_bundles = %w{
   https://github.com/vim-scripts/rubycomplete.vim
   https://github.com/ervandew/supertab.git
   https://github.com/ecomba/vim-ruby-refactoring.git
-  https://github.com/tsaleh/vim-matchit
   https://github.com/jgdavey/vim-blockle.git
   https://github.com/kchmck/vim-coffee-script.git
   https://github.com/kien/ctrlp.vim.git

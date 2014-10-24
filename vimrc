@@ -1,9 +1,9 @@
 set nocompatible
 set t_ut=
-set cursorline 
+set cursorline
 colorscheme vibrantink
 set undolevels=1000
-set history=1000 
+set history=1000
 set title
 set ruler
 set nobackup
@@ -69,7 +69,7 @@ map <Leader>h :Rhelper<CR>
 " vnoremap a :Align
 map <F5> :BufSurfBack<CR>
 map <F6> :BufSurfForward<CR>
-nmap <F8> :Rename 
+nmap <F8> :Rename
 
 vnoremap f "fy:Ack <C-r>f<CR>
 
@@ -84,10 +84,12 @@ let g:rspec_command = "!rspec {spec} > rspec_output 2>&1"
 map <Leader>t :call RunAllSpecs()<CR>:redraw!<CR>
 map <Leader>ct :call RunCurrentSpecFile()<CR>:redraw!<CR>
 
+autocmd BufWritePre * :%s/\s\+$//e
+
 call pathogen#infect()
 call pathogen#helptags()
 
-let g:ackprg="ack-grep -H -a --nocolor --nogroup --column"
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
 let g:solarized_termcolors=256
 
@@ -119,3 +121,12 @@ function! ExtractVariable()
 endfunction
 vnoremap <leader>e :call ExtractVariable()<cr>
 
+let g:multi_cursor_prev_key='<C-y>'
+
+map <leader>cc :w !xsel -i -b<CR>
+
+let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing' ]
+let g:bufferline_echo = 0
+  autocmd VimEnter *
+      \ let &statusline='%{bufferline#refresh_status()}'
+        \ .bufferline#get_status_string()
