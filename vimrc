@@ -2,6 +2,8 @@ set nocompatible
 set t_ut=
 set cursorline
 colorscheme vibrantink
+set splitbelow
+set splitright
 set undolevels=1000
 set history=1000
 set title
@@ -73,12 +75,12 @@ nmap <F8> :Rename
 
 vnoremap f "fy:Ack <C-r>f<CR>
 
-nnoremap <C-Down> :m+<CR>==
-nnoremap <C-Up> :m-2<CR>==
-inoremap <C-Down> <Esc>:m+<CR>==gi
-inoremap <C-Up> <Esc>:m-2<CR>==gi
-vnoremap <C-Down> :m'>+<CR>gv=gv
-vnoremap <C-Up> :m-2<CR>gv=gv
+" nnoremap <C-Down> :m+<CR>==
+" nnoremap <C-Up> :m-2<CR>==
+" inoremap <C-Down> <Esc>:m+<CR>==gi
+" inoremap <C-Up> <Esc>:m-2<CR>==gi
+" vnoremap <C-Down> :m'>+<CR>gv=gv
+" vnoremap <C-Up> :m-2<CR>gv=gv
 
 let g:rspec_command = "!rspec {spec} > rspec_output 2>&1"
 map <Leader>t :call RunAllSpecs()<CR>:redraw!<CR>
@@ -130,3 +132,8 @@ let g:bufferline_echo = 0
   autocmd VimEnter *
       \ let &statusline='%{bufferline#refresh_status()}'
         \ .bufferline#get_status_string()
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
