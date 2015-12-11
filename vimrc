@@ -9,6 +9,7 @@ set history=1000
 set title
 set ruler
 set nobackup
+set mouse=a
 set noswapfile
 set visualbell
 set noerrorbells
@@ -55,8 +56,8 @@ set wildignore+=*/doc/*,*/tmp/*,*.so,*.swp,*.zip,*/public/*,*.gif,*.png,*.jpg
 
 map k gk
 map j gj
-map <Up> gk
-map <Down> gj
+" map <Up> gk
+" map <Down> gj
 nmap s ys
 " map <Leader>t :call RunCurrentTest()<CR>
 " map <Leader>ct :call RunCurrentLineInTest()<CR>
@@ -128,12 +129,18 @@ let g:multi_cursor_prev_key='<C-y>'
 map <leader>cc :w !xsel -i -b<CR>
 
 let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing' ]
-let g:bufferline_echo = 0
-  autocmd VimEnter *
-      \ let &statusline='%{bufferline#refresh_status()}'
-        \ .bufferline#get_status_string()
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+set expandtab
+autocmd BufWritePost * set expandtab | retab
+
+let g:syntastic_javascript_checkers = ['eslint']
+
+let g:syntastic_mode_map = { 'passive_filetypes': ['python', 'html', 'ruby'] }
+
+set t_Co=256
+set lazyredraw
+hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE

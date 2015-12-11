@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 git_bundles = %w{
+  https://github.com/scrooloose/syntastic.git
   https://github.com/bling/vim-airline
   https://github.com/terryma/vim-multiple-cursors
-  https://github.com/bling/vim-bufferline
   https://github.com/jgdavey/tslime.vim
   https://github.com/thoughtbot/vim-rspec
   https://github.com/tomtom/tlib_vim.git
