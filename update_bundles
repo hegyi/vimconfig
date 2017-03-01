@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 git_bundles = %w{
+  https://github.com/junegunn/fzf
+  https://github.com/nixprime/cpsm.git
+  https://github.com/janko-m/vim-test
+  https://github.com/mxw/vim-jsx.git
   https://github.com/scrooloose/syntastic.git
   https://github.com/bling/vim-airline
   https://github.com/terryma/vim-multiple-cursors
@@ -11,13 +15,10 @@ git_bundles = %w{
   https://github.com/tpope/vim-rake
   https://github.com/altercation/vim-colors-solarized.git
   https://github.com/tpope/vim-dispatch
-  https://github.com/mileszs/ack.vim
-  https://github.com/vim-scripts/rubycomplete.vim
   https://github.com/ervandew/supertab.git
   https://github.com/ecomba/vim-ruby-refactoring.git
   https://github.com/jgdavey/vim-blockle.git
   https://github.com/kchmck/vim-coffee-script.git
-  https://github.com/kien/ctrlp.vim.git
   https://github.com/scrooloose/nerdtree.git
   https://github.com/sickill/vim-pasta.git
   https://github.com/tomtom/tcomment_vim.git
@@ -29,13 +30,13 @@ git_bundles = %w{
   https://github.com/tpope/vim-markdown.git
   https://github.com/tpope/vim-surround.git
   https://github.com/tpope/vim-vividchalk.git
-  https://github.com/vim-ruby/vim-ruby.git
   https://github.com/tpope/vim-rails.git
   https://github.com/vim-scripts/jQuery.git
   https://github.com/tsaleh/vim-align
   https://github.com/vim-scripts/Rename
 }
 
+# https://github.com/ctrlpvim/ctrlp.vim.git
 require 'fileutils'
 require 'open-uri'
 
@@ -55,5 +56,3 @@ end
 threads.each(&:join)
 
 Dir["*/.git"].each {|f| FileUtils.rm_rf(f) }
-
-

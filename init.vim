@@ -24,6 +24,7 @@ set showmatch
 set smartcase
 set hlsearch
 set incsearch
+set lazyredraw
 set wrapscan
 set t_Co=256
 filetype on
@@ -50,9 +51,11 @@ set gfn=Monospace\ 12
 set timeout timeoutlen=500 ttimeoutlen=500
 set cpoptions=ces$
 
-highlight Pmenu ctermbg=238 gui=bold
+highlight Pmenu ctermbg=240 gui=bold
+highlight CursorLine ctermbg=238
 
-set wildignore+=*/doc/*,*/tmp/*,*.so,*.swp,*.zip,*/public/*,*.gif,*.png,*.jpg
+set wildignore+=*/doc/*,*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/public/*,*.gif,*.png,*.jpg
+let g:ctrlp_max_files = 0
 
 map k gk
 map j gj
@@ -61,7 +64,8 @@ map j gj
 nmap s ys
 " map <Leader>t :call RunCurrentTest()<CR>
 " map <Leader>ct :call RunCurrentLineInTest()<CR>
-map <c-d> :CtrlPTag<CR>
+" map <c-d> :CtrlPTag<CR>
+" let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
 map <Leader>w :Rview<CR>
 map <Leader>c :Rcontroller<CR>
@@ -70,11 +74,6 @@ map <Leader>s :A<CR>
 map <Leader>h :Rhelper<CR>
 
 " vnoremap a :Align
-map <F5> :BufSurfBack<CR>
-map <F6> :BufSurfForward<CR>
-nmap <F8> :Rename
-
-vnoremap f "fy:Ack <C-r>f<CR>
 
 " nnoremap <C-Down> :m+<CR>==
 " nnoremap <C-Up> :m-2<CR>==
@@ -84,45 +83,17 @@ vnoremap f "fy:Ack <C-r>f<CR>
 " vnoremap <C-Up> :m-2<CR>gv=gv
 
 let g:rspec_command = "!rspec {spec} > rspec_output 2>&1"
-map <Leader>t :call RunAllSpecs()<CR>:redraw!<CR>
+map <Leader>t :Dispatch bundle exec rspec spec<CR>
 map <Leader>ct :call RunCurrentSpecFile()<CR>:redraw!<CR>
 
-autocmd BufWritePre * :%s/\s\+$//e
 
 call pathogen#infect()
 call pathogen#helptags()
-
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
 let g:solarized_termcolors=256
 
 map <leader>l :Bufstop<CR>
 
-
-
-function! RenameFile()
-  let old_name = expand('%')
-  let new_name = input('New file name: ', expand('%'), 'file')
-  if new_name != '' && new_name != old_name
-    exec ':saveas ' . new_name
-    exec ':silent !rm ' . old_name
-    redraw!
-  endif
-endfunction
-map <leader>r :call RenameFile()<cr>
-
-
-function! ExtractVariable()
-  let name = input("Variable name: ")
-  if name == ''
-    return
-  endif
-  normal! gv
-  exec "normal c" . name
-  exec "normal! O" . name . " = "
-  normal! $p
-endfunction
-vnoremap <leader>e :call ExtractVariable()<cr>
 
 let g:multi_cursor_prev_key='<C-y>'
 
@@ -135,12 +106,34 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 set expandtab
-autocmd BufWritePost * set expandtab | retab
 
 let g:syntastic_javascript_checkers = ['eslint']
 
 let g:syntastic_mode_map = { 'passive_filetypes': ['python', 'html', 'ruby'] }
 
 set t_Co=256
-set lazyredraw
-hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
+
+iabbrev ¬ require 'byebug'<cr>byebug<ESC>:w<cr>
+
+autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePost * set expandtab | retab
+let g:syntastic_check_on_open = 0
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+let test#strategy = "dispatch"
+
+map <F6> :TestFile<CR>
+map <F7> :TestNearest<CR>
+
+" " Disable Arrow keys in Escape mode
+" map <up> <nop>
+" map <down> <nop>
+" map <left> <nop>
+" map <right> <nop>
+" " Disable Arrow keys in Insert mode
+" imap <up> <nop>
+" imap <down> <nop>
+" imap <left> <nop>
+" imap <right> <nop>
+
+nnoremap <silent> <C-p> :FZF -m<cr>
