@@ -144,3 +144,5 @@ let g:syntastic_mode_map = { 'passive_filetypes': ['python', 'html', 'ruby'] }
 set t_Co=256
 set lazyredraw
 hi CursorLine   cterm=NONE ctermbg=234 ctermfg=NONE
+let g:move_key_modifier = 'C'
+

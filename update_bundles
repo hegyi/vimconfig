@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 git_bundles = %w{
+  https://github.com/matze/vim-move
+  https://github.com/elixir-lang/vim-elixir.git
   https://github.com/scrooloose/syntastic.git
   https://github.com/bling/vim-airline
   https://github.com/terryma/vim-multiple-cursors
